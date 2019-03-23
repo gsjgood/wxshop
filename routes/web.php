@@ -11,7 +11,7 @@
 |
 */
 
-Route::any('/',"IndexController@index");
+Route::any('/',"IndexController@index"); 
 //商品
 Route::group(['middleware'=>'login','prefix'=>''],function () {
     Route::any('allshop/{id}',"IndexController@allshop")->middleware('login');
@@ -27,6 +27,8 @@ Route::group(['middleware'=>'login','prefix'=>''],function () {
     Route::any('shopup',"Shop\ShopController@shopup");
     //根据价值来降序
     Route::any('shopdown',"Shop\ShopController@shopdown");
+    //查询
+    Route::any('seach',"Shop\ShopController@seach");
 });
 Route::any('userpage',"IndexController@userpage")->middleware('login');
 Route::any('shopcart',"IndexController@shopcart")->middleware('login');
@@ -48,6 +50,9 @@ Route::group(['middleware'=>'login','prefix'=>'user'],function () {
     Route::any('mywallet',"Shop\UserController@mywallet");
     //收货地址
     Route::any('address',"Shop\UserController@address");
+        //收货地址添加
+        Route::any('writeaddr',"Shop\UserController@writeaddr");
+
     //我的晒单
     Route::any('willshare',"Shop\UserController@willshare");
     //二维码分享

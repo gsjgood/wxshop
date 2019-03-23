@@ -25,7 +25,7 @@
         <!--首页头部 end-->
         <div class="g-Cart-list">
             @foreach($goodsInfo as $k=>$v)
-                <li goods_id="{{$v['goods_id']}}">
+                <li goods_id="{{$v['goods_id']}}" class="gid">
                     <s class="xuan current"></s>
                     <a class="fl u-Cart-img" href="/v44/product/12501977.do">
                         <img src="/uploads/goodsimg/{{$v['goods_img']}}" border="0" alt="">
@@ -116,6 +116,7 @@ $(function(){
                history.go(0);
         });
     })
+    
 })
 </script>
     <script type="text/javascript">
@@ -172,21 +173,44 @@ $(function(){
     })
     </script>
 
-
-
-    
     <script>
 
+    //批量删除
+    $('.remove').click(function(){
+        var _this=$(this);
+        var q=_this.parents('div').find('s').hasClass('current');
+        
+        if(q){
+            // var goods_id = _this.parents('div').prev().find('li');
+            var goods_id=$('.gid');
+            goods_id.each(function(){
+                var goods_id=$(this).attr('goods_id');
+                var _token=$("#_token").val();
+                // console.log(_token);
+                $.ajax({
+                        type:"post",
+                        url: "/cartdel",
+                        data: {goods_id:goods_id,_token:_token}
+                    }).done(function(res) {
+                    history.go(0);
+                });
+                
+            })
+        }else{
+            alert('请选择商品，再进行删除');
+        }
+    })
     // 全选        
     $(".quanxuan").click(function () {
         if($(this).hasClass('current')){
             $(this).removeClass('current');
-
+            console.log($('.xuan'));
              $(".g-Cart-list .xuan").each(function () {
                 if ($(this).hasClass("current")) {
                     $(this).removeClass("current"); 
                 } else {
                     $(this).addClass("current");
+                    
                 } 
             });
             GetCount();
@@ -197,6 +221,7 @@ $(function(){
                 $(this).addClass("current");
                 // $(this).next().css({ "background-color": "#3366cc", "color": "#ffffff" });
             });
+            
             GetCount();
         }
         
@@ -205,8 +230,7 @@ $(function(){
     // 单选
     $(".g-Cart-list .xuan").click(function () {
         if($(this).hasClass('current')){
-            
-
+        
             $(this).removeClass('current');
 
         }else{

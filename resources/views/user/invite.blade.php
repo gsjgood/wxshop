@@ -8,8 +8,8 @@
     <meta content="yes" name="apple-mobile-web-app-capable" />
     <meta content="black" name="apple-mobile-web-app-status-bar-style" />
     <meta content="telephone=no" name="format-detection" />
-    <link href="css/comm.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="css/invite.css">
+    <link href="{{url('css/comm.css')}}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{url('css/invite.css')}}">
    
     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>

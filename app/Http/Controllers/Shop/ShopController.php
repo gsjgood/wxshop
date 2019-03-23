@@ -107,4 +107,14 @@ class ShopController extends Controller
         // dd($img);
         return view("shop/shopcontent",['goodsInfo'=>$goodsInfo,'img'=>$img]);
     }
+    //查询
+    public function seach(Request $request){
+        $seach=$request['seach'];
+        // dd($seach);
+        $goods_model=new Goods();
+        $goodsInfo=$goods_model->where('goods_name',"like","%$seach%")->get()->toArray();
+        // dd($goodsInfo);
+        return view('shop/getallshop',['goodsInfo'=>$goodsInfo]);
+
+    }
 }

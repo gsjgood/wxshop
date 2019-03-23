@@ -1,5 +1,5 @@
 ﻿@extends("header")
-@section("title",'乐美')
+@section("title",'乐美') 
 @section("content")
 
         <!-- 焦点图 -->
@@ -92,8 +92,8 @@
         <div class="goods-wrap marginB">
             <ul id="ulGoodsList" class="goods-list clearfix">
         @foreach($res as $k=>$v)
-            	<li id="23558" codeid="12751965" goodsid="23558" codeperiod="28436">
-            		<a href="javascript:;" class="g-pic">
+            	<li id="23558" codeid="12751965" goodsid="23558" codeperiod="28436" goods_id="{{$v['goods_id']}}">
+            		<a href="/shopcontent/{{$v['goods_id']}}" class="g-pic">
             			<img class="lazy" name="goodsImg" src="/uploads/goodsimg/{{$v->goods_img}}" width="136" height="136">
             		</a>
             		<p class="g-name">{{$v->goods_name}}</p>
@@ -108,7 +108,7 @@
             		<div class="btn-wrap" name="buyBox" limitbuy="0" surplus="58" totalnum="1625" alreadybuy="1567">
             			<a href="javascript:;" class="buy-btn" codeid="12751965">立即购买</a>
             			<div class="gRate" codeid="12751965" canbuy="58">
-            				<a href="javascript:;"></a>
+            				<a href="javascript:;" class="cart"></a>
             			</div>
             		</div>
             	</li>
@@ -151,6 +151,8 @@
             </ul>
             <div class="loading clearfix"><b></b>正在加载</div>
         </div>
+<input type="hidden" id="_token" name="_token" value="{{csrf_token()}}">
+
 @endsection
 @extends('footer')
 <script src="{{url('js/jquery-1.11.2.min.js')}}"></script>
@@ -169,7 +171,21 @@ $(function(){
                 data: {cate_id:cate_id}
             }).done(function(res) {
 				console.log(res);
-            });
+        });
+	})
+	$(".cart").click(function(){
+		var _this=$(this);
+		var goods_id=_this.parents('li').attr('goods_id');
+		var _token=$("#_token").val();
+		// console.log(_token);
+		$.ajax({
+		    type:"post",
+		    url: "/shopcart",
+		    data: {goods_id:goods_id,_token:_token}
+		}).done(function(res) {
+			// console.log(res);
+		        location.href="/shopcart";
+		});
 	})
 })
 </script>

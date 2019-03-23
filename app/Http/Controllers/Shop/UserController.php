@@ -19,6 +19,11 @@ class UserController extends Controller
     public function address(){
         return view('user/address');
     }
+    //收货地址添加
+    public function writeaddr(){
+        
+        return view('user/writeaddr');
+    }
     //我的晒单
     public function willshare(){
         return view("user/willshare");
@@ -27,4 +32,5 @@ class UserController extends Controller
     public function invite(){
         return view("user/invite");
     }
+
 }

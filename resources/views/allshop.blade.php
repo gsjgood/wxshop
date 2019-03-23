@@ -19,9 +19,9 @@
                 <div class="border">
                     <div class="border-inner"></div>
                 </div>
-                <div class="input-box">
+                <div class="input-box" id="txtSearch">
                     <i class="s-icon"></i>
-                    <input type="text" placeholder="输入“汽车”试试" id="txtSearch" />
+                    <input type="text" placeholder="输入“汽车”试试"  />
                     <i class="c-icon" id="btnClearInput" style="display: none"></i>
                 </div>
             </div>
@@ -86,8 +86,10 @@
                             <ul id="ulGoodsList" class="mui-table-view mui-table-view-chevron">
                             @foreach($goodsInfo as $k=>$v)
                                 <li id="23468" goods_id="{{$v['goods_id']}}">    
-                                    <span class="gList_l fl">        
-                                        <img class="lazy" data-original="https://img.1yyg.net/GoodsPic/pic-200-200/20160908104402359.jpg" src="/uploads/goodsimg/{{$v->goods_img}}">
+                                    <span class="gList_l fl"> 
+                                    <a href="/shopcontent/{{$v['goods_id']}}">
+                                        <img class="lazy" data-original="https://img.1yyg.net/GoodsPic/pic-200-200/20160908104402359.jpg" src="/uploads/goodsimg/{{$v['goods_img']}}">
+                                    </a>       
                                     </span>
                                     <div class="gList_r">        
                                        <a href="/shopcontent/{{$v['goods_id']}}"> <h3 class="gray6">{{$v['goods_name']}}</h3>  </a>      
@@ -132,9 +134,28 @@
 </div>
 <input type="hidden" id="_token" name="_token" value="{{csrf_token()}}">
 @extends('footer')
-<script src="js/jquery-1.11.2.min.js"></script>
-<script src="js/lazyload.min.js"></script>
-<script src="js/mui.min.js"></script>
+<script src="{{url('js/jquery-1.11.2.min.js')}}"></script>
+<script src="{{url('js/lazyload.min.js')}}"></script>
+<script src="{{url('js/mui.min.js')}}"></script>
+<script>
+$(function(){
+    $("#txtSearch").click(function(){
+        var _this=$(this);
+        var seach=_this.children('input').val();
+        $.ajax({
+            type:"post",
+            url: "/seach",
+            data: {seach:seach,_token:_token}
+        }).done(function(res) {
+            // console.log(res);
+            $('#ulGoodsList').html(res);
+
+        });
+
+
+    })
+})
+</script>
 <script>  
         jQuery(document).ready(function() {
             $("img.lazy").lazyload({

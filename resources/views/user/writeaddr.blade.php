@@ -8,10 +8,10 @@
     <meta content="yes" name="apple-mobile-web-app-capable" />
     <meta content="black" name="apple-mobile-web-app-status-bar-style" />
     <meta content="telephone=no" name="format-detection" />
-    <link href="css/comm.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="css/writeaddr.css">
-    <link rel="stylesheet" href="layui/css/layui.css">
-    <link rel="stylesheet" href="dist/css/LArea.css">
+    <link href="{{url('css/comm.css')}}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{url('css/writeaddr.css')}}">
+    <link rel="stylesheet" href="{{url('layui/css/layui.css')}}">
+    <link rel="stylesheet" href="{{url('dist/css/LArea.css')}}">
 </head>
 <body>
     
@@ -26,12 +26,15 @@
   <input type="checkbox" name="xxx" lay-skin="switch">  
   
 </form> -->
-<form class="layui-form" action="">
+<form class="layui-form" action="writeaddr" method="post">
+@csrf
   <div class="addrcon">
     <ul>
-      <li><em>收货人</em><input type="text" placeholder="请填写真实姓名"></li>
+      <li><em>收货人</em><input type="text" placeholder="请填写真实姓名" name=""></li>
       <li><em>手机号码</em><input type="number" placeholder="请输入手机号"></li>
-      <li><em>所在区域</em><input id="demo1" type="text" readonly="" name="input_area" placeholder="请选择所在区域"></li>
+      <li><em>所在区域</em>
+        <input id="demo1" type="text" readonly="" name="input_area" placeholder="请选择所在区域">
+      </li>
       <li class="addr-detail"><em>详细地址</em><input type="text" placeholder="20个字以内" class="addr"></li>
     </ul>
     <div class="setnormal"><span>设为默认地址</span><input type="checkbox" name="xxx" lay-skin="switch">  </div>
@@ -39,11 +42,11 @@
 </form>
 
 <!-- SUI mobile -->
-<script src="dist/js/LArea.js"></script>
-<script src="dist/js/LAreaData1.js"></script>
-<script src="dist/js/LAreaData2.js"></script>
-<script src="js/jquery-1.11.2.min.js"></script>
-<script src="layui/layui.js"></script>
+<script src="{{url('dist/js/LArea.js')}}"></script>
+<script src="{{url('dist/js/LAreaData1.js')}}"></script>
+<script src="{{url('dist/js/LAreaData2.js')}}"></script>
+<script src="{{url('js/jquery-1.11.2.min.js')}}"></script>
+<script src="{{url('layui/layui.js')}}"></script>
 
 <script>
   //Demo

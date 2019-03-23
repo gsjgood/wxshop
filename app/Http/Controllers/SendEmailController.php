@@ -8,14 +8,19 @@ class SendEmailController extends Controller
     /** 发送验证码 */
     public static function SendSms($address,$code)
     {
-        //填写在开发者控制台首页上的Account Sid 
-        $options['accountsid']='a7d6a71ad621a9179cc97c9f8ecd44d1';
+        //填写在开发者控制台首页上的Account Sid
+        
+        // $options['accountsid']='a7d6a71ad621a9179cc97c9f8ecd44d1';
+        $options['accountsid']=env('OPTION_ACCOUNTSID');
         //填写在开发者控制台首页上的Auth Token
-        $options['token']='b8b9bcc0c34400765300a3e7cbbd2d71';
+        // $options['token']='b8b9bcc0c34400765300a3e7cbbd2d71';
+        $options['token']=env('OPTION_TOKEN');
 
         //初始化 $options必填
-        $appid = "f3f083e2d55044459454737505c6c63e";	//应用的ID，可在开发者控制台内的短信产品下查看
-        $templateid = "444804";    //可在后台短信产品→选择接入的应用→短信模板-模板ID，查看该模板ID
+        // $appid = "f3f083e2d55044459454737505c6c63e";	//应用的ID，可在开发者控制台内的短信产品下查看
+        $appid = env('APPID');	//应用的ID，可在开发者控制台内的短信产品下查看
+        // $templateid = "444804";    //可在后台短信产品→选择接入的应用→短信模板-模板ID，查看该模板ID
+        $templateid = env('TEMPLATEID');    //可在后台短信产品→选择接入的应用→短信模板-模板ID，查看该模板ID
 
         //以下是发送验证码的信息
         $param = $code; //验证码 多个参数使用英文逗号隔开（如：param=“a,b,c”），如为参数则留空

@@ -57,6 +57,7 @@ class IndexController extends Controller
     //购物车
     public function shopcart(Request $request){
         $goods_id=$request['goods_id'];
+        // dd($goods_id);
         //根据商品id做添加到购物车
         $cart_model=new Cart();
         $goods_model=new Goods();
@@ -71,7 +72,8 @@ class IndexController extends Controller
         if($re){
             //有的话做购买数量的添加
             $data=[
-                'buy_number'=>$re['buy_number']+1
+                'buy_number'=>$re['buy_number']+1,
+                'status'=>1
             ];
             $where=[
                 'user_id'=>$user_id,

@@ -8,14 +8,14 @@
     <meta content="yes" name="apple-mobile-web-app-capable" />
     <meta content="black" name="apple-mobile-web-app-status-bar-style" />
     <meta content="telephone=no" name="format-detection" />
-    <link href="css/comm.css" rel="stylesheet" type="text/css" />
+    <link href="{{url('css/comm.css')}}" rel="stylesheet" type="text/css" />
     
-    <link rel="stylesheet" href="acss/common.css">
-    <link rel="stylesheet" href="acss/index.css">
-    <link rel="stylesheet" href="css/willshare.css">
+    <link rel="stylesheet" href="{{url('acss/common.css')}}">
+    <link rel="stylesheet" href="{{url('acss/index.css')}}">
+    <link rel="stylesheet" href="{{url('css/willshare.css')}}">
 
-    <script src="js/zepto.js" charset="utf-8"></script>
-    <script src="js/imgUp.js"></script>
+    <script src="{{url('js/zepto.js')}}" charset="utf-8"></script>
+    <script src="{{url('js/imgUp.js')}}"></script>
    
     
 </head>
@@ -45,7 +45,7 @@
 </div>
 
 
-<script src="js/jquery-1.11.2.min.js"></script>
+<script src="{{url('js/jquery-1.11.2.min.js')}}"></script>
 
 
 

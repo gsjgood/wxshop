@@ -10,8 +10,8 @@
     <meta content="black" name="apple-mobile-web-app-status-bar-style" />
     <meta content="telephone=no" name="format-detection" />
     <link rel="stylesheet" href="css/sm.css">
-    <link href="css/comm.css" rel="stylesheet" type="text/css" />
-    <link href="css/single.css" rel="stylesheet" type="text/css" />
+    <link href="{{url('css/comm.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{url('css/single.css')}}" rel="stylesheet" type="text/css" />
     
 </head>
 <body fnav="1" class="g-acc-bg">
@@ -205,10 +205,10 @@
             </div>
         </div>
     </div>
-<script src="js/timeago.min.js"></script>
-<script src="js/zepto.js" charset="utf-8"></script>
-<script src="js/sm.js"></script>
-<script src="js/share.js"></script>
+<script src="{{url(js/timeago.min.js)}}"></script>
+<script src="{{url('js/zepto.js')}}" charset="utf-8"></script>
+<script src="{{url('js/sm.js')}}"></script>
+<script src="{{url('js/share.js')}}"></script>
 <script>
     if($('#divPostList').children().length==0){
         $('.noRecords').css('display','block');

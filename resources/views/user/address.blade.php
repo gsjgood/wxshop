@@ -8,9 +8,9 @@
     <meta content="yes" name="apple-mobile-web-app-capable" />
     <meta content="black" name="apple-mobile-web-app-status-bar-style" />
     <meta content="telephone=no" name="format-detection" />
-    <link href="css/comm.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="css/address.css">
-    <link rel="stylesheet" href="css/sm.css">
+    <link href="{{url('css/comm.css')}}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{url('css/address.css')}}">
+    <link rel="stylesheet" href="{{url('css/sm.css')}}">
   
    
     
@@ -21,7 +21,7 @@
 <div class="m-block-header" id="div-header">
     <strong id="m-title">地址管理</strong>
     <a href="javascript:history.back();" class="m-back-arrow"><i class="m-public-icon"></i></a>
-    <a href="/" class="m-index-icon">添加</a>
+    <a href="writeaddr" class="m-index-icon">添加</a>
 </div>
 <div class="addr-wrapp">
     <div class="addr-list">
@@ -66,9 +66,9 @@
 </div>
 
 
-<script src="js/zepto.js" charset="utf-8"></script>
-<script src="js/sm.js"></script>
-<script src="js/sm-extend.js"></script>
+<script src="{{url('js/zepto.js')}}" charset="utf-8"></script>
+<script src="{{url('js/sm.js')}}"></script>
+<script src="{{url('js/sm-extend.js')}}"></script>
 
 
 <!-- 单选 -->
@@ -97,7 +97,7 @@
           $.actions(groups);
     });
 </script>
-<script src="js/jquery-1.8.3.min.js"></script>
+<script src="{{url('js/jquery-1.8.3.min.js')}}"></script>
 <script>
     var $$=jQuery.noConflict();
     $$(document).ready(function(){

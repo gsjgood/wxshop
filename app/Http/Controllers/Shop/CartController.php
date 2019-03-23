@@ -16,13 +16,15 @@ class CartController extends Controller
             'user_id'=>$user_id
         ];
         $where=[
-            'status'=>2
+            'status'=>2,
+            'buy_number'=>0
         ];
         $cart_model=new Cart();
         // dd($cart_model);
         $res=$cart_model->where($delWhere)->update($where);
         dd($res);
     }
+
     //加商品
     public function cartadd(Request $request){
         $goods_id=$request['goods_id'];

@@ -4,7 +4,9 @@
 <div class="m-block-header" id="div-header">
     <strong id="m-title">注册</strong>
     <a href="javascript:history.back();" class="m-back-arrow"><i class="m-public-icon"></i></a>
-    <a href="/" class="m-index-icon"><i class="m-public-icon"></i></a>
+    <a href="/" class="m-index-icon"><i class="m-public-icon"></i></a> 
+    <link href="{{url('css/login.css')}}" rel="stylesheet" type="text/css" />
+
 </div>
     <div class="wrapper">
         <input name="hidForward" type="hidden" id="hidForward" />
