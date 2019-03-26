@@ -52,6 +52,12 @@ Route::group(['middleware'=>'login','prefix'=>'user'],function () {
     Route::any('address',"Shop\UserController@address");
         //收货地址添加
         Route::any('writeaddr',"Shop\UserController@writeaddr");
+        //删除地址
+        Route::any('addressdel',"Shop\UserController@addressdel");
+        //设为默认
+        Route::any('addressdefault',"Shop\UserController@addressdefault");
+
+
 
     //我的晒单
     Route::any('willshare',"Shop\UserController@willshare");
@@ -70,14 +76,24 @@ Route::any('unique',"Shop\LoginController@unique");
 //登录
 Route::any('login',"Shop\LoginController@login");
 Route::any('logindo',"Shop\LoginController@logindo");
+//忘记密码
+Route::any('regauth',"Shop\LoginController@regauth");
+//忘记密码-修改密码
+Route::any('resetpassword',"Shop\LoginController@resetpassword");
 
 //个人信息编辑
 Route::group(['middleware'=>'login','prefix'=>'userInfo'],function () {
+    //设置
     Route::any('set',"Shop\userInfoController@set");
+    //编辑个人信息
+    Route::any('edituser',"Shop\userInfoController@edituser");
     //安全设置
     Route::any('safeset',"Shop\userInfoController@safeset");
     //重置密码
-    Route::any('resetpassword',"Shop\userInfoController@resetpassword");
+    Route::any('modyloginpwd',"Shop\userInfoController@modyloginpwd");
+        //修改
+        Route::any('updatepwd',"Shop\userInfoController@updatepwd");
+
     
 });
 

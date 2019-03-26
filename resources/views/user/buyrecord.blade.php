@@ -8,7 +8,7 @@
     <meta content="yes" name="apple-mobile-web-app-capable" />
     <meta content="black" name="apple-mobile-web-app-status-bar-style" />
     <meta content="telephone=no" name="format-detection" />
-    <link href="{{(url'css/comm.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{url('css/comm.css')}}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{url('css/buyrecord.css')}}">
    
     

@@ -2,6 +2,7 @@
 @section("title",'乐美') 
 @section("content")
 
+
         <!-- 焦点图 -->
         <div class="hotimg-wrapper">
             <div class="hotimg-top"></div>

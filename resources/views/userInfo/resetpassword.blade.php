@@ -1,4 +1,18 @@
-@extends('header')
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>重置密码</title>
+<meta content="app-id=984819816" name="apple-itunes-app" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<link href="{{url('css/comm.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{url('css/login.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{url('css/findpwd.css')}}" rel="stylesheet" type="text/css" />
+<script src="{{url('js/jquery-1.11.2.min.js')}}"></script>
+</head>
+<body>
 <body>
     
 <!--触屏版内页头部-->
@@ -6,7 +20,7 @@
     <strong id="m-title">重置密码</strong>
     <a href="javascript:history.back();" class="m-back-arrow"><i class="m-public-icon"></i></a>
     <a href="/" class="m-index-icon"><i class="m-public-icon"></i></a>
-</div>i
+</div>
 
 
 <div class="wrapper">
@@ -23,19 +37,18 @@
 
 </div>
 
-<script src="layui/layui.js"></script> 
+<script src="{{url('layui/layui.js')}}"></script>
+<script src="{{url('layui/css/layui.css')}}"></script>
 <script>
     layui.use(['layer', 'laypage', 'element'], function(){
-  var layer = layui.layer
-  ,laypage = layui.laypage
-  ,element = layui.element(); 
+        var layer = layui.layer
+        ,laypage = layui.laypage
+        ,element = layui.element();
+        alert(1); 
  })
 </script>
 <script>
      
-
-
-
     function resetpwd(){
         // 密码失去焦点
         $('#verifcode').blur(function(){

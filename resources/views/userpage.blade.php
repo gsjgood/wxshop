@@ -13,7 +13,7 @@
             <ul>
                 <li></li>
                 <li class="name">
-                    <h3>兰兰</h3>
+                    <h3>欢迎<font color="black">{{ Session::get('userInfo.user_name') }}</font>登录</h3>
                     <p>ID：10030053</p>
                 </li>
                 <li class="next fr"><s></s></li>
@@ -22,7 +22,7 @@
         <div class="chao-money">
             <ul class="clearfix">
                 <li class="br">
-                    <p>潮购值</p>
+                    <p>积分</p>
                     <span>822</span>
                 </li>
                 <li class="br">

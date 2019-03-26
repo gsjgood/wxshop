@@ -36,9 +36,9 @@ class IndexController extends Controller
         $id=$request['id'];
         if($id!=0){
             $cate_id=$this->getSonCateId($cateInfo,$id);
-            $goodsInfo =Goods::whereIn('cate_id',$cate_id)->get();
+            $goodsInfo =Goods::whereIn('cate_id',$cate_id)->take(5)->get();
         }else{
-            $goodsInfo=Goods::all();
+            $goodsInfo=Goods::take(5)->get();
         }
         return view("/allshop",['res'=>$res,'pid'=>$pid,'goodsInfo'=>$goodsInfo,'cate_id'=>$id]);
     }

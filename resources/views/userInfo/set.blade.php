@@ -10,7 +10,7 @@
         <div class="w-item">
             <ul class="w-content clearfix">
                 <li>
-                    <a href="">编辑个人资料</a>
+                    <a href="edituser">编辑个人资料</a>
                     <s class="fr"></s>
                 </li>
                 <li>

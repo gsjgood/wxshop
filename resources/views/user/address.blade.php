@@ -24,48 +24,53 @@
     <a href="writeaddr" class="m-index-icon">添加</a>
 </div>
 <div class="addr-wrapp">
-    <div class="addr-list">
+    @foreach($res as $k=>$v)
+    @if($v['is_default']==1)
+    <div class="addr-list" >
          <ul>
             <li class="clearfix">
-                <span class="fl">兰兰</span>
-                <span class="fr">15034008459</span>
+                <span class="fl">{{$v['address_name']}}</span>
+                <span class="fr">{{$v['address_tel']}}</span>
             </li>
             <li>
-                <p>北京市东城区起来我来了</p>
+                <p>{{$v['select_area']}},{{$v['address_detail']}}</p>
             </li>
-            <li class="a-set">
+            <li class="a-set" address_id="{{$v['address_id']}}">
                 <s class="z-set" style="margin-top: 6px;"></s>
                 <span>设为默认</span>
-                <div class="fr">
-                    <span class="edit">编辑</span>
+                <div class="fr" address_id="{{$v['address_id']}}">
+                    <!-- <span class="edit">编辑</span> -->
                     <span class="remove">删除</span>
                 </div>
             </li>
         </ul>  
     </div>
-    <div class="addr-list">
+    @else
+    <div class="addr-list" >
          <ul>
             <li class="clearfix">
-                <span class="fl">兰兰</span>
-                <span class="fr">15034008459</span>
+                <span class="fl">{{$v['address_name']}}</span>
+                <span class="fr">{{$v['address_tel']}}</span>
             </li>
             <li>
-                <p>北京市东城区起来我来了</p>
+                <p>{{$v['select_area']}},{{$v['address_detail']}}</p>
             </li>
-            <li class="a-set">
+            <li class="a-set" address_id="{{$v['address_id']}}">
                 <s class="z-defalt" style="margin-top: 6px;"></s>
                 <span>设为默认</span>
-                <div class="fr">
-                    <span class="edit">编辑</span>
+                <div class="fr" address_id="{{$v['address_id']}}">
+                    <!-- <span class="edit">编辑</span> -->
                     <span class="remove">删除</span>
                 </div>
             </li>
         </ul>  
     </div>
+    @endif
+    @endforeach
    
 </div>
 
-
+<input type="hidden" name="_token" value="{{csrf_token()}}">
 <script src="{{url('js/zepto.js')}}" charset="utf-8"></script>
 <script src="{{url('js/sm.js')}}"></script>
 <script src="{{url('js/sm-extend.js')}}"></script>
@@ -77,6 +82,7 @@
 
      // 删除地址
     $(document).on('click','span.remove', function () {
+        var _this=$(this);
         var buttons1 = [
             {
               text: '删除',
@@ -84,6 +90,17 @@
               color: 'danger',
               onClick: function() {
                 $.alert("您确定删除吗？");
+                var _token=$('input').val();
+                var address_id=_this.parent().attr('address_id');
+                $.ajax({
+                    type:'post',
+                    data:{address_id:address_id,_token:_token},
+                    url:'addressdel',
+                    success:function(res){
+                        alert('删除成功');
+                        console.log(res);
+                    }
+                });
               }
             }
           ];
@@ -103,10 +120,22 @@
     $$(document).ready(function(){
             // jquery相关代码
             $$('.addr-list .a-set s').toggle(
+                // console.log($$(this).hasClass('z-set'));
             function(){
                 if($$(this).hasClass('z-set')){
                     
                 }else{
+                    var _this=$(this);
+                    var address_id=$(this).parent().attr('address_id');
+                    // console.log(address_id);
+                    $.ajax({
+                        type:'post',
+                        url:'addressdefault',
+                        data:{ _token:"{{csrf_token()}}",address_id:address_id},
+                        success:function(res){
+                            // console.log(res);
+                        }
+                    });
                     $$(this).removeClass('z-defalt').addClass('z-set');
                     $$(this).parents('.addr-list').siblings('.addr-list').find('s').removeClass('z-set').addClass('z-defalt');
                 }   
@@ -121,7 +150,6 @@
         )
 
     });
-    
 </script>
 
 

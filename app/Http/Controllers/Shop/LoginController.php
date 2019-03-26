@@ -116,4 +116,12 @@ class LoginController extends Controller
         }
 
     }
+    //忘记密码
+    public function regauth(Request $request){
+        return view('regauth');
+    }
+    //忘记密码-修改密码
+    public function resetpassword(Request $request){
+        return view('userinfo.resetpassword');
+    }
 }

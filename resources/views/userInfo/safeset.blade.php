@@ -11,7 +11,7 @@
             <ul class="w-content clearfix">
                 <li>
                     <em class="login"></em>
-                    <a href="resetpassword">登录密码</a>
+                    <a href="modyloginpwd">登录密码</a>
                     <s class="fr"><a href="resetpassword"></a></s>
                     <span class="fr">修改</span>
                 </li>
