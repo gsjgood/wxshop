@@ -136,3 +136,4 @@ Route::prefix('alipay')->group(function () {
     Route::any('return',"alipayController@re");
     Route::any('notify',"alipayController@notify");
 });
+Route::any('phpinfo',"IndexController@phpinfo");

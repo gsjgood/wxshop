@@ -169,6 +169,9 @@ class IndexController extends Controller
         // dd($redis);
         return view('a',['goodsInfo'=>$goodsInfo,'seach'=>$seach]);
     }
-    
+    //phpinfo
+    public function phpinfo(){
+        return view('ceshi.phpinfo');
+    }
     
 }
