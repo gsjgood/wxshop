@@ -1,4 +1,4 @@
-$(function(){
+(function(){
 	var clicknum = 0;
 	$('.gRate').click(function(){
 		layer.msg('添加成功！');

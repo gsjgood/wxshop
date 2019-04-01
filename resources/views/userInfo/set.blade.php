@@ -1,6 +1,6 @@
 @extends("header")
 <!--触屏版内页头部-->
-<div class="m-block-header" id="div-header">
+<div class="m-block-header" id="div-header"> 
     <strong id="m-title">设置</strong>
     <a href="javascript:history.back();" class="m-back-arrow"><i class="m-public-icon"></i></a>
     <a href="/" class="m-index-icon"><i class="m-public-icon"></i></a>
@@ -29,8 +29,10 @@
             </ul>     
         </div>
         <div class="quit">
-            <a href="">退出登录</a>
+            <a href="/quit">退出登录</a>
         </div>
     </div>
 </body>
 </html>
+<script src="{{url('js/jquery-1.11.2.min.js')}}"></script>
+

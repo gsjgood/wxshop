@@ -72,4 +72,8 @@ class CartController extends Controller
         ];
         $res=$cart_model->where($Where)->update($where);
     }
+    //结算
+    public function clear(Request $request){
+        
+    }
 }

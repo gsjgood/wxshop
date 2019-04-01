@@ -1,0 +1,30 @@
+127.0.0.1在2019-03-27 06:17:43访问了http://www.wxshop.com/userpage
+127.0.0.1在2019-03-27 06:17:57访问了http://www.wxshop.com/userpage
+127.0.0.1在2019-03-27 06:55:35访问了http://www.wxshop.com/shopcart
+127.0.0.1在2019-03-27 06:55:39访问了http://www.wxshop.com/userpage
+127.0.0.1在2019-03-27 07:05:12访问了http://www.wxshop.com/allshop/0
+127.0.0.1在2019-03-27 07:05:16访问了http://www.wxshop.com/shopcart
+127.0.0.1在2019-03-27 07:05:18访问了http://www.wxshop.com/userpage
+127.0.0.1在2019-03-27 07:09:02访问了http://www.wxshop.com/userpage
+127.0.0.1在2019-03-27 07:10:08访问了http://www.wxshop.com/allshop/0
+127.0.0.1在2019-03-27 07:10:50访问了http://www.wxshop.com/allshop/0
+127.0.0.1在2019-03-27 07:11:15访问了http://www.wxshop.com/allshop/0
+127.0.0.1在2019-03-27 07:21:16访问了http://www.wxshop.com/allshop/0
+127.0.0.1在2019-03-27 10:40:12访问了http://www.wxshop.com/shopcart
+127.0.0.1在2019-03-27 10:40:13访问了http://www.wxshop.com/userpage
+127.0.0.1在2019-03-27 10:40:15访问了http://www.wxshop.com/userInfo/set
+127.0.0.1在2019-03-27 10:43:14访问了http://www.wxshop.com/userpage
+127.0.0.1在2019-03-27 10:43:16访问了http://www.wxshop.com/userInfo/set
+127.0.0.1在2019-03-27 10:43:17访问了http://www.wxshop.com/userInfo/set
+127.0.0.1在2019-03-27 10:43:33访问了http://www.wxshop.com/userpage
+127.0.0.1在2019-03-27 10:43:44访问了http://www.wxshop.com/userpage
+127.0.0.1在2019-03-27 10:43:54访问了http://www.wxshop.com/userInfo/set
+127.0.0.1在2019-03-27 10:43:55访问了http://www.wxshop.com/userInfo/edituser
+127.0.0.1在2019-03-27 10:45:10访问了http://www.wxshop.com/userpage
+127.0.0.1在2019-03-27 10:45:12访问了http://www.wxshop.com/userInfo/set
+127.0.0.1在2019-03-27 10:45:13访问了http://www.wxshop.com/userInfo/set
+127.0.0.1在2019-03-27 10:45:35访问了http://www.wxshop.com/userpage
+127.0.0.1在2019-03-27 10:45:37访问了http://www.wxshop.com/userInfo/set
+127.0.0.1在2019-03-27 10:45:38访问了http://www.wxshop.com/userInfo/set
+127.0.0.1在2019-03-27 11:19:22访问了http://www.wxshop.com/allshop/0
+

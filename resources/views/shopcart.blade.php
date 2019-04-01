@@ -34,12 +34,13 @@
                         <a href="/v44/product/12501977.do" class="gray6">{{$v['goods_name']}}</a>
                         <span class="gray9">
                             <em>库存：{{$v['goods_num']}}</em>
+                            <em>价格：{{$v['self_price']}}</em>
                         </span>
                         <span>
                             <input class="price" name="num" maxlength="6" type="hidden" value="{{$v['self_price']}}" codeid="12501977">
                         </span>
                         <div class="num-opt">
-                            <em class="num-mius dis min"><i></i></em>
+                            <em class="num-mius  min"><i></i></em>
                             <input class="text_box" name="num" maxlength="6" type="text" value="{{$v['buy_number']}}" codeid="12501977">
                             <em class="num-add add"><i></i></em>
                         </div>
@@ -59,26 +60,25 @@
                 </dt>
                 <dd>
                     <a href="javascript:;" id="a_payment" class="orangeBtn w_account remove">删除</a>
-                    <a href="javascript:;" id="a_payment" class="orangeBtn w_account">去结算</a>
+                    <a href="javascript:;" id="a_payment" class="orangeBtn w_account over">去结算</a>
                 </dd>
             </dl>
         </div>
-        <div class="hot-recom">
+        <!-- <div class="hot-recom">
             <div class="title thin-bor-top gray6">
                 <span><b class="z-set"></b>最新热卖</span>
                 <em></em>
             </div>
             <div class="goods-wrap thin-bor-top">
                 <ul class="goods-list clearfix">
-                @foreach($newgoods as $k=>$v)
                     <li>
                         <a href="https://m.1yyg.com/v44/products/23458.do" class="g-pic">
                             <img src="/uploads/goodsimg/{{$v['goods_img']}}" width="136" height="136">
                         </a>
                         <p class="g-name">
-                            <a href="https://m.1yyg.com/v44/products/23458.do">{{$v['goods_name']}}</a>
+                            <a href="https://m.1yyg.com/v44/products/23458.do"></a>
                         </p>
-                        <ins class="gray9">价值:￥{{$v['self_price']}}</ins>
+                        <ins class="gray9">价值:￥</ins>
                         <div class="btn-wrap">
                             <div class="Progress-bar">
                                 <p class="u-progress">
@@ -92,10 +92,9 @@
                             </div>
                         </div>
                     </li>
-                @endforeach
                 </ul>
             </div>
-        </div>
+        </div> -->
 @extends('footer')
 <input type="hidden" id="_token" name="_token" value="{{csrf_token()}}">
 <script src="{{url('js/jquery-1.11.2.min.js')}}"></script>
@@ -116,7 +115,7 @@ $(function(){
                history.go(0);
         });
     })
-    
+
 })
 </script>
     <script type="text/javascript">
@@ -169,6 +168,8 @@ $(function(){
                 }).done(function(res) {
                 console.log(res);
             });
+            GetCount();
+
         })
     })
     </script>
@@ -198,6 +199,34 @@ $(function(){
             })
         }else{
             alert('请选择商品，再进行删除');
+        }
+    })
+    //结算
+    $('.over').click(function(){
+        var _this=$(this);
+        var q=_this.parents('div').find('s').hasClass('current');
+        // console.log(q);
+        if(q){
+            // var goods_id = _this.parents('div').prev().find('li');
+            var goods_id=$('.gid');
+                // var _token=$("#_token").val();
+            g=[];
+            goods_id.each(function(){
+                g+=$(this).attr('goods_id')+',';
+                return g;
+            })
+            goods_id = g.substr(0,g.length - 1);
+                console.log(goods_id);
+            $.ajax({
+                    type:"post",
+                    url: "/ordersupplymentCart/"+goods_id,
+                    data: {goods_id:goods_id,_token:"{{csrf_token()}}"}
+                }).done(function(res){
+                    location.href="/ordersupplymentCart/"+goods_id;
+            });
+
+        }else{
+            alert('请先选择商品');
         }
     })
     // 全选        

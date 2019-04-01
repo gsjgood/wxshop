@@ -82,19 +82,20 @@ $(function(){
         var user_tel=$("#txtAccount").val();
         var user_pwd=$("#txtPassword").val();
         var code=$('#verifycode').val();
-        // console.log(code);
+        // console.log(user_tel);
         $.ajax({
             method: "GET",
             url: "logindo",
             data: {user_tel:user_tel,user_pwd:user_pwd,code:code}
         }).done(function(res) {
+                // layer.msg(res);
             // console.log(res);
             if(res=="登录成功"){
                 layer.msg(res,{icon:1},function(){
-                    location.href="/";
+                    history.go(-2);
                 });
             }else{
-                layer.msg(res,{icon:2});
+                layer.msg(res);
             }
         });
     })

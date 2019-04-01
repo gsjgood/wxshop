@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 /*
 |--------------------------------------------------------------------------
@@ -11,7 +11,22 @@
 |
 */
 
-Route::any('/',"IndexController@index"); 
+Route::any('/',"IndexController@index");
+Route::any('a',"IndexController@a");
+
+//结算
+Route::group(['middleware'=>'login','prefix'=>''],function () {
+    // 立即购买
+    Route::any('ordersupplyment/{goods_id}',"Shop\OrderController@ordersupplyment");
+    //购物车购买
+    Route::any('ordersupplymentCart/{goods_id}',"Shop\OrderController@ordersupplymentCart");
+    // 确认地址
+    Route::any('orderwillsend/{goods_id}',"Shop\OrderController@orderwillsend");
+    // 购物车确认地址
+    Route::any('orderwillsendCart/{goods_id}',"Shop\OrderController@orderwillsendCart");
+    //改变地址
+    Route::any('orderaddress',"Shop\OrderController@orderaddress");
+});
 //商品
 Route::group(['middleware'=>'login','prefix'=>''],function () {
     Route::any('allshop/{id}',"IndexController@allshop")->middleware('login');
@@ -30,18 +45,24 @@ Route::group(['middleware'=>'login','prefix'=>''],function () {
     //查询
     Route::any('seach',"Shop\ShopController@seach");
 });
+//我的页面
+//购物车
+Route::group(['middleware'=>'login','prefix'=>''],function () {
+    Route::any('shopcart',"IndexController@shopcart");
+    //删除购物车
+    Route::any('cartdel',"Shop\CartController@cartdel");
+    //结算
+    Route::any('clear',"Shop\CartController@clear");
+    //加号
+    Route::any('cartadd',"Shop\CartController@cartadd");
+    //减号
+    Route::any('cartmin',"Shop\CartController@cartmin");
+    //购买的数量
+    Route::any('cartbuynum',"Shop\CartController@cartbuynum");
+});
+
+
 Route::any('userpage',"IndexController@userpage")->middleware('login');
-Route::any('shopcart',"IndexController@shopcart")->middleware('login');
-//删除购物车
-Route::any('cartdel',"Shop\CartController@cartdel")->middleware('login');
-//加号
-Route::any('cartadd',"Shop\CartController@cartadd")->middleware('login');
-//减号
-Route::any('cartmin',"Shop\CartController@cartmin")->middleware('login');
-//购买的数量
-Route::any('cartbuynum',"Shop\CartController@cartbuynum")->middleware('login');
-
-
 //我的
 Route::group(['middleware'=>'login','prefix'=>'user'],function () {
     //购买记录
@@ -57,12 +78,10 @@ Route::group(['middleware'=>'login','prefix'=>'user'],function () {
         //设为默认
         Route::any('addressdefault',"Shop\UserController@addressdefault");
 
-
-
     //我的晒单
     Route::any('willshare',"Shop\UserController@willshare");
     //二维码分享
-    Route::any('invite',"Shop\UserController@invite");
+    Route::any('invite',"Shop\UserController@invite"); 
 
 });
 
@@ -76,6 +95,8 @@ Route::any('unique',"Shop\LoginController@unique");
 //登录
 Route::any('login',"Shop\LoginController@login");
 Route::any('logindo',"Shop\LoginController@logindo");
+//退出登录
+Route::any('quit',"Shop\LoginController@quit"); 
 //忘记密码
 Route::any('regauth',"Shop\LoginController@regauth");
 //忘记密码-修改密码
@@ -102,3 +123,16 @@ Route::any('captcha',"CaptchaController@captcha");
 //手机验证码
 Route::any('getcode',"SendEmailController@getcode");
 
+//支付
+Route::prefix('alipay')->group(function () {
+    Route::any('mobilepay',"alipayController@mobilepay");
+    Route::any('return',"alipayController@re");
+    Route::any('notify',"alipayController@notify");
+});
+
+//测试
+Route::prefix('alipay')->group(function () {
+    Route::any('mobilepay',"alipayController@mobilepay");
+    Route::any('return',"alipayController@re");
+    Route::any('notify',"alipayController@notify");
+});

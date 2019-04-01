@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Model\Goods;
 use App\Model\Cart;
 use App\Model\Category;
+use Illuminate\Support\Facades\Cache;
+use function Opis\Closure\serialize;
+use Illuminate\Support\Facades\Redis;
 class IndexController extends Controller
 {
     public function index(){
@@ -135,6 +138,37 @@ class IndexController extends Controller
         return $cate_id;
     }
 
+
+    //3月份机试题A卷
+    public function a(Request $request){
+        $seach=$request['seach'];
+        $page=$request->input('page',1);
+        $key=$seach.$page;
+        // dd($page);
+        //清除memache缓存
+        // Cache::flush();die;
+
+        //cache缓存
+        // if (Cache::has($seach.$page)) {
+        //     $goodsInfo=Cache::get($seach.$page);
+        //     echo "from cache";
+        // }else{
+        //     $goodsInfo=Goods::where('goods_name','like',"%$seach%")->paginate(10);
+        //     Cache::put($seach.$page,$goodsInfo,100);
+        //     echo "from DB";
+        // }
+        
+        //redis  缓存
+        if(Redis::exists($key)){
+            $goodsInfo=unserialize(Redis::get($key));
+        }else{
+            $goodsInfo=Goods::where('goods_name','like',"%$seach%")->paginate(5);
+            Redis::set($key,serialize($goodsInfo));
+            Redis::expire($key,1000);
+        }
+        // dd($redis);
+        return view('a',['goodsInfo'=>$goodsInfo,'seach'=>$seach]);
+    }
     
     
 }

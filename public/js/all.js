@@ -1,8 +1,8 @@
-$(function(){
+(function(){
     layui.use(['layer', 'laypage', 'element'], function(){
       var layer = layui.layer
       ,laypage = layui.laypage
-      ,element = layui.element(); 
+      ,element = layui.element;
    })
 
 

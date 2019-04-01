@@ -3,7 +3,6 @@
     <ul>
         <li class="f_home "><a href="/"  class=" a"><i></i>首页</a></li>
         <li class="f_announced "><a href="/allshop/{{0}}" class="a " ><i></i>所有商品</a></li>
-        <li class="f_single "><a href="javascript:;" class="a" ></a></li>
         <li class="f_car "><a id="btnCart" href="/shopcart"  class="a" ><i></i>购物车</a></li>
         <li class="f_personal "><a href="/userpage"  class="a" ><i></i>我的潮购</a></li>
     </ul>
@@ -43,13 +42,13 @@ $(function(){
 	})
 })
 </script>
-<script>
     @yield('my-js')
+<script>
     jQuery(document).ready(function() {
-		$("img.lazy").lazyload({
-			placeholder : "images/loading2.gif",
-			effect: "fadeIn",
-		});
+		// $("img.lazy").lazyload({
+		// 	placeholder : "images/loading2.gif",
+		// 	effect: "fadeIn",
+		// });
 		// 返回顶部点击事件
 		$('#div_fastnav #li_menu').click(
 			function(){

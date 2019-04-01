@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Shop;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Goods;
+use App\Model\Cart;
 use App\Model\Category;
 class ShopController extends Controller
 {
@@ -100,12 +101,14 @@ class ShopController extends Controller
             'goods_id'=>$goods_id,
         ];
         $goods_model=new Goods();
+        $cart_model=new Cart();
         $goodsInfo =$goods_model->where($where)->first()->toArray();
         // dd($goodsInfo['goods_imgs']);
         $img=explode('|',$goodsInfo['goods_imgs']);
         // $img=array_pop($img);
-        // dd($img);
-        return view("shop/shopcontent",['goodsInfo'=>$goodsInfo,'img'=>$img]);
+        $cart=$cart_model->where($where)->count();
+        // dd($cart);
+        return view("shop/shopcontent",['goodsInfo'=>$goodsInfo,'img'=>$img,'cart'=>$cart]);
     }
     //查询
     public function seach(Request $request){

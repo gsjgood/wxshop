@@ -13,9 +13,10 @@
             <ul>
                 <li></li>
                 <li class="name">
-                    <h3>欢迎<font color="black">{{ Session::get('userInfo.user_name') }}</font>登录</h3>
+                    <h3>欢迎<font color="black">{{ Session::get('userInfo.user_name') }}</font>登录</h3 >
                     <p>ID：10030053</p>
                 </li>
+                
                 <li class="next fr"><s></s></li>
             </ul>
         </div>
@@ -51,7 +52,7 @@
         <p class="colorbbb">客服热线：400-666-2110  (工作时间9:00-17:00)</p>
     </div>
 @extends('footer')
-
+<script src="{{url('js/jquery-1.11.2.min.js')}}"></script>
     <script>
         function goClick(obj, href) {
             $(obj).empty();

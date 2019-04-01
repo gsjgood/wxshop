@@ -66,7 +66,7 @@ class UserController extends Controller
             'is_default'=>1
         ];
         $res=$address->where($where2)->update($updateWhere2);
-        dd($res);        
+        // dd($res);        
 
     }
     //收货地址添加
@@ -130,5 +130,6 @@ class UserController extends Controller
     public function invite(){
         return view("user/invite");
     }
+
 
 }

@@ -21,7 +21,7 @@
         <div id="page-photo-browser" class="page">
             <!--触屏版内页头部-->
         <div class="m-block-header" id="div-header">
-            <strong id="m-title">商品详情</strong>
+            <strong id="m-title">商品详情</strong> 
             <a href="javascript:history.back();" class="m-back-arrow"><i class="m-public-icon"></i></a>
             <a href="/" class="m-index-icon"><i class="m-public-icon"></i></a>
         </div>
@@ -33,7 +33,7 @@
                         <ul class="slides" style="width: 600%; transition-duration: 0.4s; transform: translate3d(-828px, 0px, 0px);">
                                 @foreach($img as $k=>$v)
                             <li style="width: 414px; float: left; display: block;" class="clone">
-                                <a href="https://img.1yyg.net/Poster/20170227170302909.png">
+                                <a href="/uploads/goodsimg/{{$v}}" >
                                     <img src="/uploads/goodsimg/{{$v}}" alt="">
                                 </a>
                             </li>
@@ -46,7 +46,7 @@
                 <div class="pro_info">
                     <h2 class="gray6">
                         
-                        (第<em id='Period'>10363</em>潮)
+                        <!-- (第<em id='Period'>10363</em>潮) -->
                         <span>{{$goodsInfo['goods_name']}}</span>
                     </h2>
                     <div class="purchase-txt gray9 clearfix">
@@ -74,150 +74,49 @@
                 </div>
                 <!--揭晓倒计时-->
                 <div id="divLotteryTime" class="Countdown-con">
-                    <p class="declare">声明：所有商品及活动均与苹果公司（Apple Inc）无关。</p>
                     <div class="state">
                         <em></em>
                         <span>我已阅读《潮购声明》</span>
                     </div>
-                    <div class="guide">您还没有参与哦，试试吧！</div>
                 </div>
-                <div class="imgdetail">
-                    <div class="ann_btn">
-                        <a href="">图文详情<s class="fr"></s></a>
-                    </div>
-                </div>
-                <div class="listtab tabs clearfix">
-                    <a href="javascript:;" class="active">参与记录</a>
-                    <a href="javascript:;">历史获得者</a>
-                </div>
+                
 
-              
-
-                <div class="ann_btn partcon" id="tabs-container">
-                    <div class="swiper-wrapper">
-                        <div class="record-wrapp swiper-slide">
-                             <!--所有参与记录-->
-                            <div class="part-record">
-                                <div class="ann_list">
-                                    <div class="fl">
-                                        <img src="images/goods2.jpg" alt="">
-                                    </div>
-                                    <div class="fl">
-                                        <h3>被小冉</h3>
-                                        <p>2017-06-25 15:38:12:645</p>
-                                    </div>
-                                    <div class="fr people-num">
-                                        <span>16人次</span><s class="fr"></s>
-                                    </div>
-                                </div>  
-                                <div class="ann_list">
-                                    <div class="fl">
-                                        <img src="images/goods2.jpg" alt="">
-                                    </div>
-                                    <div class="fl">
-                                        <h3>被小冉</h3>
-                                        <p>2017-06-25 15:38:12:645</p>
-                                    </div>
-                                    <div class="fr people-num">
-                                        <span>16人次</span><s class="fr"></s>
-                                    </div>
-                                </div>      
-                                <div class="ann_list">
-                                    <div class="fl">
-                                        <img src="images/goods2.jpg" alt="">
-                                    </div>
-                                    <div class="fl">
-                                        <h3>被小冉</h3>
-                                        <p>2017-06-25 15:38:12:645</p>
-                                    </div>
-                                    <div class="fr people-num">
-                                        <span>16人次</span><s class="fr"></s>
-                                    </div>
-                                </div>  
-                                <div class="ann_list">
-                                    <div class="fl">
-                                        <img src="images/goods2.jpg" alt="">
-                                    </div>
-                                    <div class="fl">
-                                        <h3>被小冉</h3>
-                                        <p>2017-06-25 15:38:12:645</p>
-                                    </div>
-                                    <div class="fr people-num">
-                                        <span>16人次</span><s class="fr"></s>
-                                    </div>
-                                </div>     
-                            </div>
-                            <!-- 无内容时显示 -->
-                            <div class="nocontent" style="display: none">
-                                <div class="m_buylist m_get">
-                                    <ul id="ul_list">
-                                        <div class="noRecords colorbbb clearfix">
-                                            <s class="default"></s>您还没有参与记录哦~
-                                        </div>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--历史获得者 -->
-                        <div class="history-winwrapp mb48 swiper-slide">
-                            <div class="history-win">
-                                <div class="win-list clearfix">
-                                    <div class="win-left fl">
-                                        <p class="chao">第2779潮购</p>
-                                        <img src="images/goods2.jpg" alt="">
-                                    </div>
-                                    <div class="win-right fl">
-                                        <p class="show-time">揭晓时间:2017-06-28 15:16:46:000</p>
-                                        <p class="winner">获得者：<i>穿越狂信者</i></p>
-                                        <p class="show-count">本潮购参与：1480人次</p>
-                                        <p class="show-code">幸运潮购码：10003664</p>
-                                    </div>
-                                </div>
-                                <div class="win-list clearfix">
-                                    <div class="win-left fl">
-                                        <p class="chao">第2779潮购</p>
-                                        <img src="images/goods2.jpg" alt="">
-                                    </div>
-                                    <div class="win-right fl">
-                                        <p class="show-time">揭晓时间: <i>2017-06-28 15:16:46:000</i></p>
-                                        <p class="winner">获得者：<i>穿越狂信者</i></p>
-                                        <p class="show-count">本潮购参与：<i>1480</i>人次</p>
-                                        <p class="show-code">幸运潮购码：<i>10003664</i></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 无内容时显示 -->
-                            <div class="nocontent" style="display: none">
-                                <div class="m_buylist m_get">
-                                    <ul id="ul_list">
-                                        <div class="noRecords colorbbb clearfix">
-                                            <s class="default"></s>您还没有参与记录哦~
-                                        </div>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>     
-                             
-                    </div>
-                    
-                </div>
                            
                 <div class="pro_foot"> 
-                        <a href="" class="">第10364潮正在进行中<span class="dotting"></span></a>
-                        <a href="" class="shopping">立即参与</a>
-                        <span href="" class="fr"><i><b num="1">1</b></i></span>         
+                        <a href="" class="">立即购买<span class="dotting"></span></a>
+                        @if($cart=='')
+                        <a href="" class="shopping" id="shopping">加入购物车</a>
+                        @else
+                        <a href="" class="shopping">已加入购物车</a>
+                        @endif
+                        <!-- <span href="" class="fr"><i><b num="1">1</b></i></span>          -->
                 </div>
             </div>
         </div>
     </div>
-
+<input type="hidden" name="goods_id" id="goods_id" value="{{$goodsInfo['goods_id']}}">
+<input type="hidden" name="_token" id="_token" value="{{csrf_token()}}">
 <script src="{{url('js/jquery-1.11.2.min.js')}}"></script>
 <script src="http://cdn.bootcss.com/flexslider/2.6.2/jquery.flexslider.min.js"></script>
 <script src="{{url('js/swiper.min.js')}}"></script>
 <script src="{{url('js/photo.js')}}" charset="utf-8"></script>
 <script>
-    $(function () {  
+    $(function () {
+        $('#shopping').click(function(){
+            var goods_id=$("#goods_id").val();
+            
+            // console.log(goods_id);
+            $.ajax({
+                type:"post",
+                url:"/shopcart",
+                data:{goods_id:goods_id,_token:"{{csrf_token()}}"},
+                success:function(res){
+                    console.log(res);
+                    // location.href="/shopcart";
+                }
+            })
+
+        }) 
         $('.hotimg').flexslider({   
             directionNav: false,   //是否显示左右控制按钮   
             controlNav: true,   //是否显示底部切换按钮   
