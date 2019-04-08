@@ -137,3 +137,9 @@ Route::prefix('alipay')->group(function () {
     Route::any('notify',"alipayController@notify");
 });
 Route::any('phpinfo',"IndexController@phpinfo");
+
+Route::any('check',"Wechat\wechatController@check");
+//微信
+Route::any('material/index',"Wechat\materialController@index");
+Route::any('material/doup',"Wechat\materialController@getMaterial");
+Route::any('material',"Wechat\wechatController@material");
