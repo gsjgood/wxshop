@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Wechat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Wechat;
+use App\Model\Subscribe;
 use function GuzzleHttp\json_decode;
 
 class wechatController extends Controller
@@ -14,7 +15,7 @@ class wechatController extends Controller
      * @content 微信绑定服务器效验
      * @params
      *  */
-    public function check(){
+    public function check(){ 
         // $echostr= $_GET['echostr'];
         // if($this->checkSignature($signature,$timestamp,$nonce)){
         //     echo $echostr;exit;
@@ -46,10 +47,10 @@ class wechatController extends Controller
             if($postObj->MsgType == "event"){
                 //判断是一个关注事件
                 if($postObj->Event == "subscribe"){
-                    $contentStr="终于成功了";
-                    $resultStr = sprintf($te,$form,$to,$time,$msgtype,$contentStr);
+                    $type = config('wxconfig.subscribe');
+                    $types = ucfirst($type);
+                    $resultStr = Wechat::$types($type,$form,$to);
                     echo $resultStr;
-                    exit();
                 }
             }
             //关键词回复
@@ -58,22 +59,43 @@ class wechatController extends Controller
                 $resultStr = sprintf($te,$form,$to,$time,$msgtype,$contentStr);
                 echo $resultStr;
             }else if($keywords=="图片"){
-                $msgtype="image";
                 $te ="<xml>
                         <ToUserName><![CDATA[%s]]></ToUserName>
                         <FromUserName><![CDATA[%s]]></FromUserName>
                         <CreateTime><![CDATA[%s]]></CreateTime>
                         <MsgType><![CDATA[%s]]></MsgType>
-                        <PicUrl><![CDATA[%s]]></PicUrl>
-                        <MediaId><![CDATA[%s]]></MediaId>
-                        <MsgId><![CDATA[%s]]></MsgId>
+                        <Image>
+                            <MediaId><![CDATA[%s]]></MediaId>
+                        </Image>
                     </xml>";
-                $mediaid = session('media_id');
-                $token = Wechat::getAccessToken();
-                $url="https://api.weixin.qq.com/cgi-bin/media/get?access_token=$token&media_id=$mediaid";
-                $data=file_get_contents($url);
-                $contentStr=1111;
-                $resultStr = sprintf($te,$form,$to,$time,$msgtype,$contentStr,$mediaid);
+                $msgtype="image";
+                $media_id = Subscribe::first()->media_id;                   
+                $resultStr = sprintf($te,$form,$to,$time,$msgtype,$media_id);
+                echo $resultStr;
+            }else if($keywords=="博客"){
+                $te ="<xml>
+                        <ToUserName><![CDATA[%s]]></ToUserName>
+                        <FromUserName><![CDATA[%s]]></FromUserName>
+                        <CreateTime><![CDATA[%s]]></CreateTime>
+                        <MsgType><![CDATA[%s]]></MsgType>
+                        <ArticleCount>1</ArticleCount>
+                        <Articles>
+                        <item>
+                            <Title><![CDATA[%s]]></Title>
+                            <Description><![CDATA[%s]]></Description>
+                            <PicUrl><![CDATA[%s]]></PicUrl>
+                            <Url><![CDATA[%s]]></Url>
+                        </item>
+                        </Articles>
+                    </xml>";
+                $data = Subscribe::first();
+                $msgtype="news";
+                $title=$data->title;//标题
+                $des=$data->des;//内容
+                $picurl = $data->picurl;//图片路径
+                $url = $data->url;//点击路径
+                // $media_id = Subscribe::first()->media_id;                   
+                $resultStr = sprintf($te,$form,$to,$time,$msgtype,$title,$des,$picurl,$url);
                 echo $resultStr;
             }else if(strpos($keywords,"天气")){
                 //获取天气城市名
@@ -85,6 +107,13 @@ class wechatController extends Controller
                 $resultStr = sprintf($te,$form,$to,$time,$msgtype,$contentStr);
                 echo $resultStr;
             }else{
+                $te ="<xml>
+                        <ToUserName><![CDATA[%s]]></ToUserName>
+                        <FromUserName><![CDATA[%s]]></FromUserName>
+                        <CreateTime>%s</CreateTime>
+                        <MsgType><![CDATA[%s]]></MsgType>
+                        <Content><![CDATA[%s]]></Content>
+                    </xml>";
                 //图灵机器人回复
                 $msg=Wechat::tuling($keywords);
                 $contentStr= $msg;
@@ -118,10 +147,11 @@ class wechatController extends Controller
     }
 
     public function material(){
-        $mediaid = session('media_id');
-        $token = Wechat::getAccessToken();
-        $url="https://api.weixin.qq.com/cgi-bin/media/get?access_token=$token&media_id=$mediaid";
-        $data=file_get_contents($url);
-       echo $data;
+        $type = config('wxconfig.subscribe');
+        $aaa=ucfirst($type);
+        $resultStr = Wechat::News($type,1,2);
+        $data = Subscribe::where('type',$type)->orderBy('s_id','desc')->first();
+        $title = $data->title;
+        dd($title);
     }
 }

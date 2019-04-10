@@ -3,6 +3,8 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use function GuzzleHttp\json_decode;
+use Illuminate\Support\Facades\Storage;
+use App\Model\Subscribe;
 
 class Wechat extends Model
 {
@@ -51,8 +53,7 @@ class Wechat extends Model
         $secret=env('WXAPPSECRET');
         $url="https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$appid&secret=$secret";
         $data=file_get_contents($url);
-        $data=json_decode($data,true);
-        $token=$data['access_token'];
+        $token=json_decode($data,true)['access_token'];
         
         return $token;
     }
@@ -126,5 +127,73 @@ class Wechat extends Model
 
         return $msg;
     }
+    /**
+     * @content 图片上传
+     */
+    public static function uploadfile($file){
+        //获取文件类型
+        $str = $file->getClientMimeType();
+        //获取文件后缀名
+        $ext = $file->getClientOriginalExtension();
+        //获取文件当前位置
+        $path = $file->getRealPath();
+        //获取文件名称
+        $newfilename = date('Ymd').'/'.mt_rand(1000,9999).'.'.$ext;
+        //移动文件
+        $re = Storage::disk('uploads')->put($newfilename,file_get_contents($path));
+        $imgpath = public_path().'/uploads/'.$newfilename;
+        $data=[
+            'str'=>$str,
+            'imgpath'=>$imgpath,
+            'newfilename'=>$newfilename
+        ];
 
+        return $data;
+    }
+    /**
+     * @content 获取类型
+     */
+    //获取文件类型
+    public static function getType($str){
+        $str = explode('/',$str);
+        $ty = $str[0];
+        $arr =[
+            'image'=>'image',
+            'audio'=>'voice',
+            'video'=>'video'
+        ];
+
+        return $arr[$ty];
+    }
+    /**
+     * @content 图文类型首次关注
+     */
+    public static function News($type,$form,$to){
+        $time=time();
+        $te ="<xml>
+                <ToUserName><![CDATA[%s]]></ToUserName>
+                <FromUserName><![CDATA[%s]]></FromUserName>
+                <CreateTime><![CDATA[%s]]></CreateTime>
+                <MsgType><![CDATA[%s]]></MsgType>
+                <ArticleCount>1</ArticleCount>
+                <Articles>
+                <item>
+                    <Title><![CDATA[%s]]></Title>
+                    <Description><![CDATA[%s]]></Description>
+                    <PicUrl><![CDATA[%s]]></PicUrl>
+                    <Url><![CDATA[%s]]></Url>
+                </item>
+                </Articles>
+            </xml>";
+        $data = Subscribe::where('type',$type)->orderBy('s_id','desc')->first();
+        $msgtype='news';
+        $title=$data->title;//标题
+        $des=$data->des;//内容
+        $picurl = $data->picurl;//图片路径
+        $url = $data->url;//点击路径
+        // $media_id = Subscribe::first()->media_id;                   
+        $resultStr = sprintf($te,$form,$to,$time,$msgtype,$title,$des,$picurl,$url);
+        
+        return $resultStr;
+    }
 }

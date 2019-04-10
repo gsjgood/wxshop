@@ -138,8 +138,22 @@ Route::prefix('alipay')->group(function () {
 });
 Route::any('phpinfo',"IndexController@phpinfo");
 
-Route::any('check',"Wechat\wechatController@check");
+Route::any('wechat/check',"Wechat\wechatController@check");
 //微信
 Route::any('material/index',"Wechat\materialController@index");
 Route::any('material/doup',"Wechat\materialController@getMaterial");
 Route::any('material',"Wechat\wechatController@material");
+//微信后台
+Route::prefix('admin')->group(function () {
+    Route::any('index',"Admin\WechatAdminController@index");
+    Route::any('upsubscribe',"Admin\WechatAdminController@upsubscribe");
+    //关注内容的提交
+    Route::any('wxindex',"Admin\WechatAdminController@wxindex");
+    //关注类型的选择
+    Route::any('wxtype',"Admin\WechatAdminController@wxtype");
+    Route::any('wxtypedo',"Admin\WechatAdminController@wxtypedo");
+
+});
+
+
+
