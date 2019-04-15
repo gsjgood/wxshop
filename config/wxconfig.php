@@ -1,3 +1,3 @@
 <?php return array (
-  'subscribe' => 'news',
+  'subscribe' => 'video',
 );?>

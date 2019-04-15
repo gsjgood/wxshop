@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 use function GuzzleHttp\json_decode;
 use Illuminate\Support\Facades\Storage;
 use App\Model\Subscribe;
+use Illuminate\Support\Facades\Cache;
 
 class Wechat extends Model
 {
@@ -42,7 +43,7 @@ class Wechat extends Model
             //没有文件生成文件
             touch($filename);
         }
-        
+        Cache::set("token",$token,7100);
         return $token;
     }
     /**
@@ -109,6 +110,13 @@ class Wechat extends Model
      * @content 图灵机器人
      */
     public static function tuling($str){
+        $te ="<xml>
+            <ToUserName><![CDATA[%s]]></ToUserName>
+            <FromUserName><![CDATA[%s]]></FromUserName>
+            <CreateTime>%s</CreateTime>
+            <MsgType><![CDATA[%s]]></MsgType>
+            <Content><![CDATA[%s]]></Content>
+        </xml>";
         $data=[
             'perception'=>[
                 'inputText'=>[
@@ -194,6 +202,85 @@ class Wechat extends Model
         // $media_id = Subscribe::first()->media_id;                   
         $resultStr = sprintf($te,$form,$to,$time,$msgtype,$title,$des,$picurl,$url);
         
+        return $resultStr;
+    }
+    /**
+     * @content 首次关注回复音频
+     */
+    public static function Voice($type,$form,$to){
+        $time=time();
+        $te ="<xml>
+                <ToUserName><![CDATA[%s]]></ToUserName>
+                <FromUserName><![CDATA[%s]]></FromUserName>
+                <CreateTime><![CDATA[%s]]></CreateTime>
+                <MsgType><![CDATA[%s]]></MsgType>
+                <Voice>
+                    <MediaId><![CDATA[%s]]></MediaId>
+                </Voice>
+            </xml>";
+        $msgtype='voice';        
+        $media_id = Subscribe::where('type',$type)->orderBy('s_id','desc')->first()->media_id;                  
+        $resultStr = sprintf($te,$form,$to,$time,$msgtype,$media_id);
+        
+        return $resultStr;
+    }
+    /**
+     * @content 首次关注回复视频
+     * $type 数据类型为视频
+     */
+    public static function Video($type,$form,$to){
+        $time=time();
+        $te ="<xml>
+                <ToUserName><![CDATA[%s]]></ToUserName>
+                <FromUserName><![CDATA[%s]]></FromUserName>
+                <CreateTime><![CDATA[%s]]></CreateTime>
+                <MsgType><![CDATA[%s]]></MsgType>
+                <Video>
+                    <MediaId><![CDATA[%s]]></MediaId>
+                    <Title><![CDATA[%s]]></Title>
+                    <Description><![CDATA[%s]]></Description>
+                </Video>
+            </xml>";
+        $msgtype='video';        
+        $data = Subscribe::where('type',$type)->orderBy('s_id','desc')->first();
+        $media_id=$data->media_id;
+        $title = $data->title;
+        $des = $data->des;                  
+        $resultStr = sprintf($te,$form,$to,$time,$msgtype,$media_id,$title,$des);
+        
+        return $resultStr;
+    }
+    /**
+     * @content 商品详情
+     */
+    public static function shopcontent($goods,$form,$to){
+        $time=time();
+        $data =Goods::where('goods_name','like',"%$goods%")->orderBy('create_time','desc')->first();
+        $te ="<xml>
+            <ToUserName><![CDATA[%s]]></ToUserName>
+            <FromUserName><![CDATA[%s]]></FromUserName>
+            <CreateTime><![CDATA[%s]]></CreateTime>
+            <MsgType><![CDATA[%s]]></MsgType>
+            <ArticleCount>1</ArticleCount>
+            <Articles>
+            <item>
+                <Title><![CDATA[%s]]></Title>
+                <Description><![CDATA[%s]]></Description>
+                <Price><![CDATA[%s]]></Price>
+                <PicUrl><![CDATA[%s]]></PicUrl>
+                <Url><![CDATA[%s]]></Url>
+            </item>
+            </Articles>
+        </xml>";
+        $msgtype='news';
+        $title=$data->goods_name;//标题 
+        $des="库存".$data->goods_num;//内容
+        $price="价格".$data->self_price;//内容
+        $picurl ="/uploads/goodsimg/".$data->goods_img;//图片路径
+        $goods_id=$data->goods_id;
+        $url ="39.96.204.43/shopcontent/".$goods_id;//点击路径
+        $resultStr = sprintf($te,$form,$to,$time,$msgtype,$title,$des,$price,$picurl,$url);
+
         return $resultStr;
     }
 }

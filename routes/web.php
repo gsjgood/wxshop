@@ -1,4 +1,5 @@
-<?php 
+<?php
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,13 +28,14 @@ Route::group(['middleware'=>'login','prefix'=>''],function () {
     //改变地址
     Route::any('orderaddress',"Shop\OrderController@orderaddress");
 });
+ //商品详情
+ Route::any('shopcontent/{goods_id}',"Shop\ShopController@shopcontent");
 //商品
 Route::group(['middleware'=>'login','prefix'=>''],function () {
     Route::any('allshop/{id}',"IndexController@allshop")->middleware('login');
     //点击展示商品分类
     Route::any('shopcate/{cate_id}',"Shop\ShopController@shopcate");
-    //商品详情
-    Route::any('shopcontent/{goods_id}',"Shop\ShopController@shopcontent");
+   
     //展示顶级分类
     Route::any('showtopcate',"IndexController@showtopcate");
     //根据最新查询
@@ -142,11 +144,11 @@ Route::any('wechat/check',"Wechat\wechatController@check");
 //微信
 Route::any('material/index',"Wechat\materialController@index");
 Route::any('material/doup',"Wechat\materialController@getMaterial");
-Route::any('material',"Wechat\wechatController@material");
+Route::any('ceshi',"Wechat\wechatController@material");
 //微信后台
 Route::prefix('admin')->group(function () {
     Route::any('index',"Admin\WechatAdminController@index");
-    Route::any('upsubscribe',"Admin\WechatAdminController@upsubscribe");
+    Route::post('upsubscribe',"Admin\WechatAdminController@upsubscribe");
     //关注内容的提交
     Route::any('wxindex',"Admin\WechatAdminController@wxindex");
     //关注类型的选择
@@ -154,6 +156,20 @@ Route::prefix('admin')->group(function () {
     Route::any('wxtypedo',"Admin\WechatAdminController@wxtypedo");
 
 });
+//自定义菜单列表
+Route::any("menulist","Admin\menuController@menulist");
+Route::any("menuindex","Admin\menuController@menuindex");
+Route::any("addmenu","Admin\menuController@addmenu");
+Route::any("domenuadd","Admin\menuController@domenuadd");
+//是否启用菜单
+Route::any("wxMenu","Admin\menuController@wxMenu");
 
+Route::any("customize","Admin\menuController@customize");
+//是否开启
+Route::any("statusUpdate","Admin\menuController@statusUpdate");
+//删除
+Route::any("menudel","Admin\menuController@menudel");
+
+Route::any("getUserInfo","Wechat\wechatController@getUserInfo");
 
 

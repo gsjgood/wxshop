@@ -22,7 +22,7 @@
     </script>
 </head>
 <body>
-    <form method="post" class="layui-form">
+<form method="post" class="layui-form">
         @csrf
 <div class="layui-form-item" >
     <div class="layui-input-block"> 
@@ -54,12 +54,15 @@
       <input type="radio" name="sex" class="text" value="text"  title="文本消息" />
     </div>
 </div>
-<div class="layui-form-item">
+<!-- <div class="layui-form-item">
     <div class="layui-input-block">
-      <button class="layui-btn" lay-submit id="btn" lay-filter="*">提交</button>
+      <button   id="btn" >提交</button>
     </div>
-</div>
+</div> -->
 </form>
+<div style="margin-left:130px;">
+    <button class="layui-btn layui-btn-warm"    style="text-align:center;"  id="btn" >提交</button>
+</div>
 </body>
 <script src="{{url('layui/layui.js')}}"></script>
 <script src="{{url('js/jquery-1.11.2.min.js')}}"></script>
@@ -67,16 +70,8 @@
 $(function(){
     layui.use('form', function(){
     var form = layui.form;
-    // var input=$("input");
-    // input.each(function(res){
-    //     var type = $(this).val();
-    //     console.log(type);
-    //     if(type=="{{$type}}"){
-    //         $("input").prop('checked','checked');
-    //     }
-    // })
-    $("input[class='{{$type}}']").prop('checked',true); 
-    console.log($("input[class='{{$type}}']"));
+    $("input[class='{{$type}}']").prop('checked',true);
+    form.render();
         $("#btn").click(function(){
             //获取单选框的类型
             var type = $("input[type='radio']:checked").val();
@@ -86,7 +81,7 @@ $(function(){
                    "/admin/wxtypedo",
                    {type:type,_token:"{{csrf_token()}}"},
                    function(res){
-                       console.log(res);
+                    //    console.log(res);
                    }
                )
             }else{

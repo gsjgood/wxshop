@@ -8,11 +8,11 @@
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <link rel="stylesheet" href="{{url('admin/xadmin/css/font.css')}}">
-	<link rel="stylesheet" href="{{url('admin/xadmin/css/xadmin.css')}}">
+    <link rel="stylesheet" href="{{url('admin/xadmin/css/xadmin.css')}}">
+    <link rel="stylesheet" href="{{url('layui/css/layui.css')}}" media="all">    
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript"src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
     <script src="{{url('admin/xadmin/lib/layui/layui.js')}}" charset="utf-8"></script>
-    <script type="text/javascript" src="{{url('layui/css/layui.css')}}"></script>
 
     <script type="text/javascript" src="{{url('admin/xadmin/js/xadmin.js')}}"></script>
     <script type="text/javascript" src="{{url('admin/xadmin/js/cookie.js')}}"></script>
@@ -307,6 +307,33 @@
                         <a _href="/admin/wxtype">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>首次关注类型设置</cite>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe6b4;</i>
+                    <cite>自定义菜单</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a _href="/menuindex">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>微信自定义菜单管理</cite>
+                        </a>
+                    </li>
+                    <li>
+                        <a _href="/addmenu">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>微信自定义菜单添加</cite>
+                        </a>
+                    </li>
+                    <li>
+                        <a _href="/customize">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>微信自定义菜单管理2</cite>
                         </a>
                     </li>
                 </ul>
